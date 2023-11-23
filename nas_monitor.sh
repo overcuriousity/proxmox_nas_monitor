@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # IP Address of the NAS
-NAS_IP="192.168.178.211"
+NAS_IP="10.10.10.10"
 
 # Container IDs
-CONTAINERS=(114 115 116 201)
+CONTAINERS=(123 456 789)
 
 # Function to start containers
 start_containers() {
@@ -19,10 +19,13 @@ start_containers() {
 # Function to stop containers
 stop_containers() {
     for ct in "${CONTAINERS[@]}"; do
-        echo "Stopping container $ct"
-        /usr/sbin/pct shutdown "$ct"
+        if [ "$(/usr/sbin/pct status "$ct" | grep -c 'running')" -eq 1 ]; then
+            echo "Stopping container $ct"
+            /usr/sbin/pct shutdown "$ct" --forceStop 1
+        fi 
     done
 }
+
 
 # Check NAS connectivity
 PING_SUCCESS=$(ping -c 5 "$NAS_IP" | grep 'received' | awk -F',' '{ print $2 }' | awk '{ print $1 }')
