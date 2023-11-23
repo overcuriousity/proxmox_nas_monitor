@@ -19,4 +19,8 @@ and paste
 
      
      */10 * * * * /path/to/nas_monitor.sh
+
+make the script executable:
+
+     chmod +x /path/to/nas_monitor.sh
      
