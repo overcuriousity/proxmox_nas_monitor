@@ -12,11 +12,11 @@ So my idea was to solve this issue by using a script for
 
 and add the script to a cron job:
 
-´´´bash
-crontab -e
-´´´
+     ```bash
+     crontab -e
+     ```
 and paste 
 
-´´´bash
-*/10 * * * * /path/to/nas_monitor.sh
-´´´
+     ```bash
+     */10 * * * * /path/to/nas_monitor.sh
+     ```
